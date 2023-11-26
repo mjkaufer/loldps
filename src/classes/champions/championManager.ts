@@ -1,4 +1,4 @@
-import { Champion } from "@/classes/champions/baseClass";
+import { Champion } from "@/classes/champions/champion";
 import { TPatchVersion } from "@/data/constants/patchVersions";
 
 // Handles getting champion for a given version

@@ -1,4 +1,4 @@
-import { Champion } from "@/classes/champions/baseClass";
+import { Champion } from "@/classes/champions/champion";
 import { ChampionManager } from "@/classes/champions/championManager";
 
 // PLOPFILE_CHAMP_IMPORT

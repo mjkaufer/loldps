@@ -15,12 +15,12 @@ module.exports = function (plop: NodePlopAPI) {
       // Creates champion's class file
       {
         type: "add",
-        path: "../src/classes/champions/{{championName}}.ts",
+        path: "../src/classes/champions/defs/{{championName}}.ts",
         templateFile: "./championClass.hbs",
       },
       {
         type: "add",
-        path: "../src/classes/champions/{{championName}}Manager.ts",
+        path: "../src/classes/champions/managers/{{championName}}Manager.ts",
         templateFile: "./championManager.hbs",
       },
 
@@ -29,7 +29,7 @@ module.exports = function (plop: NodePlopAPI) {
         type: "modify",
         path: "../src/classes/champions/index.ts",
         pattern: /(( *)\/\/ PLOPFILE_CHAMP_IMPORT)/g,
-        template: `$2import { {{championName}}Manager } from './{{championName}}Manager';\n$1`,
+        template: `$2import { {{championName}}Manager } from './managers/{{championName}}Manager';\n$1`,
       },
       {
         type: "modify",
