@@ -15,7 +15,7 @@ module.exports = function (plop: NodePlopAPI) {
       // Creates champion's class file
       {
         type: "add",
-        path: "../src/classes/champions/defs/{{championName}}.ts",
+        path: "../src/classes/champions/defs/{{championName}}/{{championName}}.ts",
         templateFile: "./championClass.hbs",
       },
       {
