@@ -1,4 +1,6 @@
 import { Champion } from "@/classes/champions/baseClass";
+import { ChampionManager } from "@/classes/champions/championManager";
+
 // PLOPFILE_CHAMP_IMPORT
 // Do not modify above line
 
@@ -9,7 +11,7 @@ export enum ChampionName {
   // Do not modify above line
 }
 
-export const CHAMPION_NAME_TO_CLASS: Record<ChampionName, Champion> = {
+export const CHAMPION_NAME_TO_MANAGER: Record<ChampionName, ChampionManager> = {
   // PLOPFILE_CHAMP_CLASS
   // Do not modify above line
 }

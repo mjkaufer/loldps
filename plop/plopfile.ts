@@ -18,6 +18,11 @@ module.exports = function (plop: NodePlopAPI) {
         path: "../src/classes/champions/{{championName}}.ts",
         templateFile: "./championClass.hbs",
       },
+      {
+        type: "add",
+        path: "../src/classes/champions/{{championName}}Manager.ts",
+        templateFile: "./championManager.hbs",
+      },
 
       // Adds to big list of exports / enum
       {
