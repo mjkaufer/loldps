@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "inlineSourceMap": true,
+    "inlineSources": true
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "swc": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
