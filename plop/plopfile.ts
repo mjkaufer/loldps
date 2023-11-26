@@ -29,7 +29,7 @@ module.exports = function (plop: NodePlopAPI) {
         type: "modify",
         path: "../src/classes/champions/index.ts",
         pattern: /(( *)\/\/ PLOPFILE_CHAMP_IMPORT)/g,
-        template: `$2import { {{championName}} } from './{{championName}}';\n$1`,
+        template: `$2import { {{championName}}Manager } from './{{championName}}Manager';\n$1`,
       },
       {
         type: "modify",
@@ -41,7 +41,7 @@ module.exports = function (plop: NodePlopAPI) {
         type: "modify",
         path: "../src/classes/champions/index.ts",
         pattern: /(( *)\/\/ PLOPFILE_CHAMP_CLASS)/g,
-        template: `$2[ChampionName.{{championName}}]: {{championName}}\n$1`,
+        template: `$2[ChampionName.{{championName}}]: {{championName}}Manager,\n$1`,
       },
     ],
   });

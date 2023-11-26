@@ -3,9 +3,9 @@ import { TPatchVersion } from "@/data/constants/patchVersions";
 
 // Handles getting champion for a given version
 export class ChampionManager {
-  private championClasses: Champion[];
+  private championClasses: {new(): Champion}[];
   // Should be put in ascending chronological order, w/ newest champ last
-  constructor(championClasses: Champion[]) {
+  constructor(championClasses: {new(): Champion}[]) {
     this.championClasses = championClasses;
 
     // TODO: Validate all classes are of same champion, etc.
