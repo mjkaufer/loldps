@@ -30,7 +30,7 @@ const applyMordPassive = (context: TSkillCastContextWithTarget<Mordekaiser>) =>
     context.championStatuses,
     ChampStatusName.MordPassive,
     (s) => {
-      const stacks = Math.max((s?.stacks ?? 0) + 1, PASSIVE_MAX_STACKS);
+      const stacks = Math.min((s?.stacks ?? 0) + 1, PASSIVE_MAX_STACKS);
       const isActive = stacks === PASSIVE_MAX_STACKS;
       const priorNextFireTime = s?.fireAtMs ?? 0;
       // If we have an existing event which hasn't fired yet, use its next fire time, otherwise we delay perpetually

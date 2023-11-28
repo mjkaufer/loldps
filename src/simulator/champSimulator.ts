@@ -82,6 +82,9 @@ export class ChampSimulator {
     if (preDamage) {
       this.applyDamageToTarget(preDamage, context);
     }
+
+    definition.updateSelfStatuses?.(context);
+    definition.updateTargetStatuses?.(context);
     this.updateStatuses(this.targetChampion);
     this.updateStatuses(this.champion);
 
@@ -89,18 +92,22 @@ export class ChampSimulator {
       definition.getCooldown?.(context) ??
       definition.cooldownByLevel?.[context.skillLevel];
     if (cooldown === undefined) {
-      throw new Error(
-        `No cooldown found for ${this.champion.championName}'s ${skillOrAutoType}`
-      );
+      // TODO: Auto attack cooldowns
+      if (skillOrAutoType !== 'A') {
+        throw new Error(
+          `No cooldown found for ${this.champion.championName}'s ${skillOrAutoType}`
+        );
+      }
+    } else {
+      // Update cooldowns
+      this.champion
+        .getState()
+        .setCooldown(
+          skillOrAutoType,
+          abilityHasteToRatio(championStats.abilityhaste) * cooldown
+        );
     }
 
-    // Update cooldowns
-    this.champion
-      .getState()
-      .setCooldown(
-        skillOrAutoType,
-        abilityHasteToRatio(championStats.abilityhaste) * cooldown
-      );
 
     const multiCooldowns = definition.getMultiCooldowns?.(context);
     if (multiCooldowns) {
