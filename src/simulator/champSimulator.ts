@@ -67,7 +67,7 @@ export class ChampSimulator {
     damage: TDamage,
     context: TEventContextWithTarget<Champion>
   ) => {
-    this.targetChampion.getState().takeDamage(damage, context);
+    context.targetChampion.getState().takeDamage(damage, context);
   };
 
   decrementCooldowns = (champion: Champion = this.champion) => {
