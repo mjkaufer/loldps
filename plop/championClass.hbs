@@ -1,6 +1,18 @@
+import { TSkillDefinition } from '@/classes/champions/types';
 import { Champion } from '../../champion';
 
 export class {{championName}} extends Champion {
+
+  // TODO: Fill out
+  public static readonly skillDefinition: TSkillDefinition<{{championName}}> = {
+    P: {cooldownByLevel: null},
+    Q: {cooldownByLevel: null},
+    W: {cooldownByLevel: null},
+    E: {cooldownByLevel: null},
+    R: {cooldownByLevel: null},
+  }
+
+  static readonly enabled: boolean = false;
 
   constructor() {
     super("{{championName}}");

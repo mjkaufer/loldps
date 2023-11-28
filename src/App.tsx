@@ -1,8 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { ChampSimulator } from "@/simulator/champSimulator";
+import { Mordekaiser } from "@/classes/champions/defs/Mordekaiser/Mordekaiser";
 
 function App() {
+  Object.assign(window, {
+    ChampSimulator,
+    Mordekaiser,
+  });
+  console.log("SET STUFF");
+
   return (
     <div className="App">
       <header className="App-header">
