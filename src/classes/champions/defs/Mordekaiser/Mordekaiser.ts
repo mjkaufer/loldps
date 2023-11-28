@@ -103,22 +103,34 @@ export class Mordekaiser extends Champion {
     ),
     P: Champion.skillDefinition.P,
     Q: {
-      cooldownByLevel: [9 / 7.75 / 6.5 / 5.25 / 4],
+      cooldownByLevel: [9, 7.75, 6.5, 5.25, 4],
       updateSelfStatuses: applyMordPassive,
+      getPreDamage: (c) => {
+        return {
+          magic:
+            ([
+              5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 51, 61, 71, 81, 91, 107,
+              123, 139,
+            ][c.champion.level] +
+            [75, 95, 115, 135, 155][c.skillLevel] + 
+              c.champStats.abilitypower * 0.6) *
+            [0.4, 0.45, 0.5, 0.55, 0.6][c.skillLevel],
+        };
+      },
     },
 
     // Not really relevant for DPS sim
     W: { cooldownByLevel: null },
 
     E: {
-      cooldownByLevel: [18 / 16 / 14 / 12 / 10],
+      cooldownByLevel: [18, 16, 14, 12, 10],
       getPassiveStatMod: (c) => ({
-        pctmagicpen: [0, 5 / 7.5 / 10 / 12.5 / 15][c.skillLevel],
+        pctmagicpen: [0, 5, 7.5, 10, 12.5, 15][c.skillLevel],
       }),
       getPreDamage: (c) => {
         return {
           magic:
-            [80 / 95 / 110 / 125 / 140][c.skillLevel] +
+            [80, 95, 110, 125, 140][c.skillLevel] +
             c.champStats.abilitypower * 0.6,
         };
       },
@@ -144,7 +156,8 @@ export class Mordekaiser extends Champion {
         0.6 * damageCallbackContext.champion.level +
         0.3 * damageCallbackContext.champStats.abilitypower +
         // TODO: Maybe provide stats in context, so we don't compute a whole bunch
-        ((1 + 4 / 17) / 100) * damageCallbackContext.targetChampion.getStats().hp,
+        ((1 + 4 / 17) / 100) *
+          damageCallbackContext.targetChampion.getStats().hp,
     };
   };
 }

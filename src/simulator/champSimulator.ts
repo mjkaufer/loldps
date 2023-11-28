@@ -24,6 +24,11 @@ export class ChampSimulator {
     this.tickMs = 0;
   }
 
+  init = () => {
+    this.champion.getState().init();
+    this.targetChampion.getState().init();
+  };
+
   onTick = () => {
     this.tickMs += STANDARD_TICK_TIME_MS;
   };
@@ -73,7 +78,6 @@ export class ChampSimulator {
     const definition = this.champion.cls.skillDefinition[skillOrAutoType];
     const context = this.buildContextForSkillOrAuto(skillOrAutoType);
     const championStats = this.champion.getStats();
-
     const preDamage = definition.getPreDamage?.(context);
     if (preDamage) {
       this.applyDamageToTarget(preDamage, context);

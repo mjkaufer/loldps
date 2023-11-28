@@ -20,13 +20,13 @@ export function abilityHasteToRatio(ah: number) {
 // TODO: Handle pen vs reduction
 // The value for "resists" should be post-reduction (but pre-pen)
 // pctResistPen is typically [0, 1], i.e. 100% is passed in as 1.0
+// Ratio is damage multiplier, i.e. how much of the damage you end up taking
 export function resistsToRatio(
   resists: number,
   flatResistPen: number,
   pctResistPen: number
 ) {
   const newResists = resists * (1 - pctResistPen) - flatResistPen;
-
   const resistRatio = 100 / (100 + newResists);
   return newResists >= 0 ? resistRatio : 2 - resistRatio;
 }
@@ -42,7 +42,7 @@ export function getPostMitigationDamage(
         targetStats.spellblock,
         attackerStats.magicpen,
         attackerStats.pctmagicpen
-      )
+      ) * damage.magic
     : 0;
 
   const physicalDamage = damage.physical
@@ -50,7 +50,7 @@ export function getPostMitigationDamage(
         targetStats.armor,
         attackerStats.armorpen,
         attackerStats.pctarmorpen
-      )
+      ) * damage.physical
     : 0;
 
   return magicDamage + physicalDamage + (damage.true ?? 0);

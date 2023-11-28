@@ -23,12 +23,15 @@ export class ChampionState {
     E: 0,
     R: 0,
   };
-  public health: number;
+  public health: number = 0;
 
   constructor(champion: Champion) {
     this.champion = champion;
-    this.health = this.champion.getStats().hp;
     // TODO: Seed base cooldowns from champion
+  }
+
+  init = () => {
+    this.health = this.champion.getStats().hp;
   }
 
   takeDamage = (
