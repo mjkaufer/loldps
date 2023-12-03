@@ -15,6 +15,7 @@ export class ChampionState {
   private champion: Champion;
   public statusMap: ChampStatusMap = {};
   // Stored in seconds
+  // TODO: Make more robust for other cooldowns?
   public cooldowns: TCooldowns = {
     A: 0,
     P: 0,
@@ -23,7 +24,7 @@ export class ChampionState {
     E: 0,
     R: 0,
   };
-  public health: number = 0;
+  public damageTaken: number = 0;
 
   constructor(champion: Champion) {
     this.champion = champion;
@@ -31,14 +32,14 @@ export class ChampionState {
   }
 
   init = () => {
-    this.health = this.champion.getStats().hp;
+    this.damageTaken = 0;
   }
 
   takeDamage = (
     damage: TDamage,
     context: TEventContextWithTarget<Champion>
   ) => {
-    this.health -= getPostMitigationDamage(damage, context);
+    this.damageTaken += getPostMitigationDamage(damage, context);
   };
 
   // Mostly just used for event ticks
@@ -66,7 +67,7 @@ export class ChampionState {
 
   // TODO: Support
   reset = () => {
-    this.health = this.champion.getStats().hp;
+    this.damageTaken = 0;
     this.cooldowns = {
       A: 0,
       P: 0,

@@ -11,3 +11,4 @@ sim.init();
 console.log(sim.targetChampion.state.health);
 sim.applySkillOrAuto('Q');
 console.log(sim.targetChampion.state.health);
+console.log("STATUS MAP", sim.champion.state.statusMap)

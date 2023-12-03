@@ -62,8 +62,9 @@ export class Champion {
     this.level = level;
   };
 
+  
   receiveDamage = (postMitigationDamage: number) => {
-    this.state.health -= postMitigationDamage;
+    this.state.damageTaken += postMitigationDamage;
   };
 
   setSkillProgression = (skillProgression: TSkillProgression) => {
